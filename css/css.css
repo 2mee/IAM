@@ -1,0 +1,144 @@
+/* variable declarations */
+:root {
+    --myapp-color-background: 255,255,255;
+    --myapp-color-header: rgb(255,255,255);
+    --myapp-color-main: rgb(210,210,210);
+    --myapp-color-footer: rgb(255,255,255);
+
+    --myapp-height-header: 50px;
+    --myapp-height-footer: 50px;
+
+    --myapp-size-imagebutton: 40px;
+    --myapp-size-imagebutton-img: 28px;
+}
+
+html, body {
+    background-color: var(--myapp-color-background);
+    margin: 0;
+    font-family: "Avenir Medium", sans-serif ;
+    color: black;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
+/* block text selection */
+* {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    box-sizing: border-box;
+}
+
+/* base structure */
+header {
+    background-color: var(--myapp-color-header);
+    height: var(--myapp-color-header);
+    display: flex;
+}
+
+main {
+    background-color: var(--myapp-color-main);
+    height: calc(100% - var(--myapp-height-header) + var(--myapp-height-footer));
+    /* overflow: scroll; */
+    overflow-y: auto;
+}
+dialog {
+   /* visibility: hidden;*/
+}
+
+footer {
+    background-color: var(--myapp-color-footer);
+    height: var(--myapp-height-footer);
+    color: azure;
+    border-top-color: orange;
+    border-top-style: solid;
+    display: flex;
+}
+
+h1 {
+    display: inline-block;
+    font-weight: normal;
+    font-size: 20pt;
+    line-height: var(--myapp-height-header);
+    margin: 0;
+}
+li {
+    list-style: none;
+}
+
+/* alignment */
+.align-right {
+    justify-content: flex-end;
+    float: right;
+}
+
+.align-left {
+    justify-content: flex-start;
+    float: left;
+}
+.fill-left {
+    margin-left: fill;
+}
+
+.fill-right {
+    margin-right: auto;
+}
+
+/* imgbutton */
+
+.imgbutton {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    font-size: 0;
+    background-image: url('img/glyphicons/png/glyphicons-517-menu-hamburger.png');
+    background-repeat: no-repeat;
+    background-size: 60% auto;
+    background-position: center;
+    height: 40px;
+    width: 40px;
+    filter: invert(70%);
+
+}
+
+header .imgbutton {
+    margin-top: 10px;
+}
+
+header .imgbutton {
+    margin-top: 5px;
+}
+
+.add{
+    background-image: url("img/glyphicons/png/glyphicons-433-plus.png");
+    background-size: 50% auto;
+    margin-top: 10px;
+}
+
+.view {
+    background-image: url("img/glyphicons/png/glyphicons-157-show-thumbnails.png");
+    background-size: 50% auto;
+    margin-top: 10px;
+}
+
+
+.logout{
+    background-image: url("img/glyphicons/png/glyphicons-388-log-out.png");
+    background-size: 65% auto;
+    margin-top: 5px;
+}
+
+.refresh {
+    background-image: url("img/glyphicons/png/glyphicons-82-refresh.png");
+    background-size: 60% auto;
+    margin-top: 5px;
+
+}
+
+.pic {
+    background-image: url("img/glyphicons/png/glyphicons-18-music.png");
+    background-size: 20px auto;
+    margin-top: 10px;
+
+}
