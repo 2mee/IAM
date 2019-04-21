@@ -2,14 +2,21 @@
 :root {
     --myapp-color-background: 255,255,255;
     --myapp-color-header: rgb(255,255,255);
-    --myapp-color-main: rgb(210,210,210);
+    --myapp-color-header-border: rgb(195,195,195);
+    --myapp-color-main: rgb(255,255,255);
     --myapp-color-footer: rgb(255,255,255);
+    --myapp-color-footer-border: darkorange;
+    --myapp-color-lines: gainsboro;
+    --myapp-color-url: rgb(195,195,195);
 
     --myapp-height-header: 50px;
     --myapp-height-footer: 50px;
 
     --myapp-size-imagebutton: 40px;
     --myapp-size-imagebutton-img: 28px;
+    --myapp-size-image: 50px;
+
+    --myapp-height-listitem: 60px;
 }
 
 html, body {
@@ -35,6 +42,8 @@ header {
     background-color: var(--myapp-color-header);
     height: var(--myapp-color-header);
     display: flex;
+    border-bottom: solid 5px;
+    border-bottom-color: var(--myapp-color-header-border);
 }
 
 main {
@@ -51,8 +60,7 @@ footer {
     background-color: var(--myapp-color-footer);
     height: var(--myapp-height-footer);
     color: azure;
-    border-top-color: orange;
-    border-top-style: solid;
+    border-top: solid 5px var(--myapp-color-footer-border);
     display: flex;
 }
 
@@ -62,17 +70,60 @@ h1 {
     font-size: 20pt;
     line-height: var(--myapp-height-header);
     margin: 0;
+    padding-left: 10px;
 }
-li {
+ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
+ }
+li {
+    border-bottom: solid 1px var(--myapp-color-lines);
+    /*height: var(--myapp-height-listitem);*/
+    /*line-height: var(--myapp-height-listitem);*/
+    padding: 0 10px;
 }
+.first_listitem{
+    border-top: solid var(--myapp-color-lines) 15px;
+}
+li img {
+    height: var(--myapp-size-image);
+    width: var(--myapp-size-image);
+    object-fit: cover;
+    margin: 10px 0;
+}
+.td2{
+    width: 100%;
+}
+.td3 {
+    font-size: 11pt;
+    color: grey;
+}
+.td1, .td3{
+    width: 100%;
+    /*padding: 0 5px 0 0;*/
+}
+td .source-site, .date{
+    font-size: 10pt;
+    color: var(--myapp-color-url);
+    padding: 0 10px 0 10px ;
+}
+td .title_name{
+    font-size: 11pt;
+    padding: 5px 10px 0 10px;
+}
+td .count{
+    padding: 5px 0 5px 10px;
+    font-size: 10pt;
+    color: var(--myapp-color-url);
+}
+
 
 /* alignment */
 .align-right {
     justify-content: flex-end;
     float: right;
 }
-
 .align-left {
     justify-content: flex-start;
     float: left;
@@ -136,9 +187,24 @@ header .imgbutton {
 
 }
 
-.pic {
-    background-image: url("img/glyphicons/png/glyphicons-18-music.png");
-    background-size: 20px auto;
+/*.pic {*/
+/*    background-image: url("img/glyphicons/png/glyphicons-18-music.png");*/
+/*    background-size: 20px auto;*/
+/*    margin-top: 10px;*/
+/*}*/
+.dots {
+    background-image: url("img/glyphicons/png/glyphicons-518-option-vertical.png");
+    height: 20px;
+    width: 20px;
+    background-size: 5px auto;
+    filter: invert(55%);
     margin-top: 10px;
-
+}
+.play {
+    background-image: url("img/glyphicons/png/glyphicons-174-play.png");
+    height: 10px;
+    width: 10px;
+    background-size: 10px auto;
+    filter: invert(55%);
+    margin-left: 10px;
 }
