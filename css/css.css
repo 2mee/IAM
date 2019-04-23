@@ -16,7 +16,9 @@
     --myapp-size-imagebutton-img: 28px;
     --myapp-size-image: 50px;
 
-    --myapp-height-listitem: 60px;
+    --myapp-height-listitem: 70px;
+
+    --myapp-size-img-tiles: 70px
 }
 
 html, body {
@@ -48,8 +50,8 @@ header {
 
 main {
     background-color: var(--myapp-color-main);
-    height: calc(100% - var(--myapp-height-header) + var(--myapp-height-footer));
-    /* overflow: scroll; */
+    height: calc(100% - (var(--myapp-height-header) + var(--myapp-height-footer)) - 5px);
+     /*overflow: scroll;*/
     overflow-y: auto;
 }
 dialog {
@@ -90,29 +92,36 @@ li img {
     height: var(--myapp-size-image);
     width: var(--myapp-size-image);
     object-fit: cover;
-    margin: 10px 0;
+    margin-top: calc((var(--myapp-height-listitem) - var(--myapp-size-image))/2);
+    margin-right: 10px;
 }
-.td2{
-    width: 100%;
+li img, .title_name, .count, .play{
+    display: inline-block;
 }
-.td3 {
-    font-size: 11pt;
-    color: grey;
-}
-.td1, .td3{
-    width: 100%;
-    /*padding: 0 5px 0 0;*/
-}
-td .source-site, .date{
+ /*für die Umsetzung mit Tabelle*/
+
+/*.td2{*/
+/*    width: 100%;*/
+/*}*/
+/*.td3 {*/
+/*    font-size: 11pt;*/
+/*    color: grey;*/
+/*}*/
+/*.td1, .td3{*/
+/*    width: 100%;*/
+/*    !*padding: 0 5px 0 0;*!*/
+/*}*/
+
+.source-site, .date{
     font-size: 10pt;
     color: var(--myapp-color-url);
     padding: 0 10px 0 10px ;
 }
-td .title_name{
+.title_name{
     font-size: 11pt;
     padding: 5px 10px 0 10px;
 }
-td .count{
+ .count{
     padding: 5px 0 5px 10px;
     font-size: 10pt;
     color: var(--myapp-color-url);
@@ -184,14 +193,12 @@ header .imgbutton {
     background-image: url("img/glyphicons/png/glyphicons-82-refresh.png");
     background-size: 60% auto;
     margin-top: 5px;
-
 }
 
-/*.pic {*/
-/*    background-image: url("img/glyphicons/png/glyphicons-18-music.png");*/
-/*    background-size: 20px auto;*/
-/*    margin-top: 10px;*/
-/*}*/
+.dots, .play{
+    display: inline-block;
+}
+
 .dots {
     background-image: url("img/glyphicons/png/glyphicons-518-option-vertical.png");
     height: 20px;
@@ -207,4 +214,33 @@ header .imgbutton {
     background-size: 10px auto;
     filter: invert(55%);
     margin-left: 10px;
+}
+/* tiles */
+.tiles li {
+    display: inline-block;
+    border-bottom: none;
+}
+.tiles li * {
+    display: none;
+}
+.tiles li img{
+    display: block;
+    height: var(--myapp-size-img-tiles);
+    width: var(--myapp-size-img-tiles);
+}
+.tiles li *:not(:first-child) {
+    display: none;
+}
+.tiles main {
+    padding-left: 10px;
+}
+
+/* fade in - fade out */
+main.faded {
+    opacity: 0;
+    transition: opacitiy 2s;
+}
+main {
+    opacity: 1.0;
+    transition: opacitiy 1s;
 }
