@@ -5,8 +5,8 @@ function initialiseView() {
     const main = document.querySelector("main");
     const view = header.querySelector("header .view"); //query selector reagiert auf css elemente
     const refresh = document.querySelector("footer .refresh"); //query selector reagiert auf css elemente
-    const ul = main.getElementsByTagName("ul");
-    const add = header.querySelector("button");
+    const ul = main.getElementsByTagName("ul")[0];
+    const add = header.querySelector("button.add");
     // const litemplate = document.querySelector("main ul li");
     // litemplate.parentNode.removeChild(litemplate);
 
