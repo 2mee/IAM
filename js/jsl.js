@@ -46,7 +46,7 @@ function initialiseView() {
 
     function ontransitionend() {
         main.classList.toggle("faded");
-        main.removeEventListener("transionenend", ontransitionend);
+        main.removeEventListener("transitionend", ontransitionend);
     }
 
     // list items selection
@@ -68,7 +68,7 @@ function initialiseView() {
 
     ul.onclick = (evt) => {
         var currentli = getCurrentli(evt.target);
-        // evt.target.classList ....
+        evt.target.classList.contains("dots");
         alert("Selected: " + getLiTitle(currentli) +  ", click event on: " + evt.target);
     }
 
@@ -92,18 +92,18 @@ function initialiseView() {
     }
 
     // add new elements
-    add.onclick = () => {
+    add.onclick = (evt) => {
         evt.stopPropagation(); // unterbindet das Wandern durch den Baum
-        addLiElementToList({title: "New Element:" + Date.now(),src:"http://..." });
+        addLiElementToList({title: "New Element:" + Date.now(),src:"http:///placeimg.com/150/200/any" })
        // alert("add new element");
     }
 
     function addLiElementToList(obj){
         // alert("add new element for: " + JSON.stringify(obj));
-        console.log("add new element for: " + JSON.stringify(obj));
-        ul.innerHTML = ul.innerHTML + "<li><img alt class=\'align-left'\ src=\"" + obj.src + "\"/><h2>" + obj.title + "</h2> </li>";
-
+        console.log("add new element for: " + JSON.stringify(obj)); // z.B. für Troubleshooting
+        ul.innerHTML = ul.innerHTML + "<li><img alt class=\"align-left\" src=\"" + obj.src + "\"/><span class='title_name'>" + obj.title + "</span> </li>";
     }
+
 }
 
 window.onload = initialiseView;
