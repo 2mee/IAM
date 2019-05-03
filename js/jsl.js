@@ -7,6 +7,8 @@ function initialiseView() {
     const refresh = document.querySelector("footer .refresh"); //query selector reagiert auf css elemente
     const ul = main.getElementsByTagName("ul");
     const add = header.querySelector("button");
+    // const litemplate = document.querySelector("main ul li");
+    // litemplate.parentNode.removeChild(litemplate);
 
     // switching views
 
@@ -101,9 +103,45 @@ function initialiseView() {
     function addLiElementToList(obj){
         // alert("add new element for: " + JSON.stringify(obj));
         console.log("add new element for: " + JSON.stringify(obj)); // z.B. für Troubleshooting
-        ul.innerHTML = ul.innerHTML + "<li><img alt class=\"align-left\" src=\"" + obj.src + "\"/><span class='title_name'>" + obj.title + "</span> </li>";
-    }
 
+        // Möglichkeit 1:
+        // ul.innerHTML = ul.innerHTML + "<li><img alt class=\"align-left\" src=\"" + obj.src + "\"/><span class='title_name'>" + obj.title + "</span> </li>";
+
+        // Möglichkeit 2:
+//         var li = document.createElement("li");
+//         var img = document.createElement("img");
+//         img.classList.add("align-left");
+//         img.src = obj.src;
+//         li.appendChild(img);
+//
+// // *********   Frage statt <h2> habe ich <span class="titel_name"> ist das so umsetzbar? *************
+//         var title_name = document.createElement("span class");
+//         title_name.classList.add("align-left");
+//         title_name.textContent = obj.title;
+//         li.appendChild(title_name);
+//         var button = document.createElement("button");
+//         button.setAttribute("class", "imgbutton align-right edit-item");
+//
+        // Möglichkeit 3:
+        const li = litemplate.cloneNode(true);
+        // li.hidden = false; // um die das kurze ein und ausblenden zu vermeiden
+        li.querySelector("img").src = obj.src;
+        li.querySelector("title_name").textContent = obj.title;
+
+        // Möglichkeit 4: hier ergänzt um die das kurze ein und ausblenden zu vermeiden
+        // var li = document.importNode(litemplate.content, true);
+        // li.querySelector("img").src = obj.src;
+        // li.querySelector("title_name").textContent = obj.title;
+
+        ul.appendChild(li);
+
+    }
+    xhr("GET","data/listitems.json", null, function (xhrobj) {
+       alert("got data from server: " + xhrobj.responseText);
+       var items = JSON.parse(xhrobj.responseText);
+       console.log("got items: ", items);
+       items.forEach(item => addLiElementToList(item));
+    });
 }
 
 window.onload = initialiseView;
