@@ -18,7 +18,8 @@
 
     --myapp-height-listitem: 70px;
 
-    --myapp-size-img-tiles: 70px
+    --myapp-size-img-tiles: 70px;
+    --myapp-height-listitem-tiles: 110px;
 }
 
 html, body {
@@ -181,7 +182,11 @@ header .imgbutton {
     background-size: 50% auto;
     margin-top: 10px;
 }
-
+.tilesview {
+    background-image: url("img/glyphicons/png/glyphicons-115-list.png");
+    background-size: 60% auto;
+    margin-top: 10px;
+}
 
 .logout{
     background-image: url("img/glyphicons/png/glyphicons-388-log-out.png");
@@ -219,6 +224,9 @@ header .imgbutton {
 .tiles li {
     display: inline-block;
     border-bottom: none;
+    padding-left: 0;
+    padding-right: 0;
+    height: calc(var(--myapp-size-img-tiles) + 10px);
 }
 .tiles li * {
     display: none;
@@ -228,10 +236,10 @@ header .imgbutton {
     height: var(--myapp-size-img-tiles);
     width: var(--myapp-size-img-tiles);
 }
-.tiles li *:not(:first-child) {
-    display: none;
-}
-.tiles main {
+/*.tiles li *:not(:first-child) {*/
+/*    display: none;*/
+/*}*/
+.tiles ul {
     padding-left: 10px;
 }
 
