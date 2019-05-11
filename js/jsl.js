@@ -7,11 +7,10 @@ function initialiseView() {
     const refresh = document.querySelector("footer .refresh"); //query selector reagiert auf css elemente
     const ul = main.getElementsByTagName("ul")[0];
     const add = header.querySelector("button.add");
-    // const litemplate = document.querySelector("main ul li");
-    // litemplate.parentNode.removeChild(litemplate);
+    const litemplate = document.querySelector("main ul li");
+    // litemplate.parentNode.removeChild(litemplate); // ist die Entfernen Lösung für JSR Aufgabe2
 
     // switching views
-
     // header.onclick = () => {
     //     // alert("onclick!");
     //     // document.body.setAttribute("class", "tiles");
@@ -25,10 +24,9 @@ function initialiseView() {
         setTimeout(() => {
             document.body.classList.toggle("tiles");
             main.classList.toggle("faded")
-        },2000);
-        main.addEventListener("transitionend", ontransitionend);
-    };
-
+            },1000);
+        // main.addEventListener("transitionend", ontransitionend);
+    }
 
     refresh.onclick = () => {
         main.classList.toggle("faded");
@@ -43,8 +41,24 @@ function initialiseView() {
         // *** dritte Möglichkeit ***
         // setTimeout(() => {
         //     main.classList.toggle("faded")},5000);
-        main.addEventListener("transitionend", ontransitionend);
-    };
+        // main.addEventListener("transitionend", ontransitionend);
+
+        // reload statt refresh durch löschen der Liste und Neuaufruf
+        // entweder durch - Soll nicht verwendet werden
+        // window.location.reload();
+
+        // oder 2.
+        // while (ul.firstChild){
+        //     ul.removeChild(ul.firstChild);
+        // }
+
+        // oder 3.
+        ul.innerHTML = "";
+        setTimeout(() => {
+            main.classList.toggle("faded")
+        },500);
+        ul.innerHTML = "LI";
+    }
 
     function ontransitionend() {
         main.classList.toggle("faded");
@@ -55,10 +69,10 @@ function initialiseView() {
     // var litems = main.getElementsByTagName("li");
     // for (var i = 0; i < litems.length; i++) {
     //     let currentli = litems[i];
-    //     currentli.onclick = (evt) => {
-    //         alert("Select:" + getLiTitle(currentli) + "click on: " + evt.target);
-            // Event target evt.target gibt an auf welchem Element das Event (z.B. der click) tatsächlich stattgefunden hat
-    //     }
+    //     // currentli.onclick = (evt) => {
+    //         // alert("Select:" + getLiTitle(currentli) + "click on: " + evt.target);
+    //         // Event target evt.target gibt an auf welchem Element das Event (z.B. der click) tatsächlich stattgefunden hat
+    //     // }
     // }
 
     // var litems = main.querySelectorAll("li");
@@ -68,11 +82,11 @@ function initialiseView() {
     //         }
     // });
 
-    ul.onclick = (evt) => {
-        var currentli = getCurrentli(evt.target);
-        evt.target.classList.contains("dots");
-        alert("Selected: " + getLiTitle(currentli) +  ", click event on: " + evt.target);
-    }
+    // ul.onclick = (evt) => {
+    //     var currentli = getCurrentli(evt.target);
+    //     evt.target.classList.contains("dots");
+    //     // alert("Selected: " + getLiTitle(currentli) +  ", click event on: " + evt.target);
+    // }
 
     function getCurrentli(el) {
         if (el.tagName == "LI") {
@@ -89,59 +103,103 @@ function initialiseView() {
         }
     }
 
-    function getLiTitle(li) {
-        return li.getElementsByClassName("title_name")[0].textContent;
-    }
+    // function getLiTitle(li) {
+    //     return li.getElementsByClassName("title_name")[0].textContent;
+    // }
 
     // add new elements
-    add.onclick = (evt) => {
-        evt.stopPropagation(); // unterbindet das Wandern durch den Baum
-        addLiElementToList({title: "New Element:" + Date.now(),src:"http:///placeimg.com/150/200/any" })
-       // alert("add new element");
-    }
+    // add.onclick = (evt) => {
+    //     evt.stopPropagation(); // unterbindet das Wandern durch den Baum
+    //     addLiElementToList({title: "New Element:" + Date.now(),src:"http:///placeimg.com/150/200/any" })
+    //    // alert("add new element");
+    // }
 
-    function addLiElementToList(obj){
-        // alert("add new element for: " + JSON.stringify(obj));
-        console.log("add new element for: " + JSON.stringify(obj)); // z.B. für Troubleshooting
-
-        // Möglichkeit 1:
-        // ul.innerHTML = ul.innerHTML + "<li><img alt class=\"align-left\" src=\"" + obj.src + "\"/><span class='title_name'>" + obj.title + "</span> </li>";
-
-        // Möglichkeit 2:
-//         var li = document.createElement("li");
-//         var img = document.createElement("img");
-//         img.classList.add("align-left");
-//         img.src = obj.src;
-//         li.appendChild(img);
+//     function addLiElementToList(obj){
+//         // alert("add new element for: " + JSON.stringify(obj));
+//         console.log("add new element for: " + JSON.stringify(obj)); // z.B. für Troubleshooting
 //
-// // *********   Frage statt <h2> habe ich <span class="titel_name"> ist das so umsetzbar? *************
-//         var title_name = document.createElement("span class");
-//         title_name.classList.add("align-left");
-//         title_name.textContent = obj.title;
-//         li.appendChild(title_name);
-//         var button = document.createElement("button");
-//         button.setAttribute("class", "imgbutton align-right edit-item");
+//         // Möglichkeit 1:
+//         // ul.innerHTML = ul.innerHTML + "<li><img alt class=\"align-left\" src=\"" + obj.src + "\"/><span class='title_name'>" + obj.title + "</span> </li>";
 //
-        // Möglichkeit 3:
-        const li = litemplate.cloneNode(true);
-        // li.hidden = false; // um die das kurze ein und ausblenden zu vermeiden
-        li.querySelector("img").src = obj.src;
-        li.querySelector("title_name").textContent = obj.title;
+//         // Möglichkeit 2:
+// //         var li = document.createElement("li");
+// //         var img = document.createElement("img");
+// //         img.classList.add("align-left");
+// //         img.src = obj.src;
+// //         li.appendChild(img);
+// //
+// // // *********   Frage statt <h2> habe ich <span class="titel_name"> ist das so umsetzbar? *************
+// //         var title_name = document.createElement("span class");
+// //         title_name.classList.add("align-left");
+// //         title_name.textContent = obj.title;
+// //         li.appendChild(title_name);
+// //         var button = document.createElement("button");
+// //         button.setAttribute("class", "imgbutton align-right edit-item");
+//
+//         // Möglichkeit 3:
+//         var li = litemplate.cloneNode(true);
+//         // li.hidden = false; // um die das kurze ein und ausblenden zu vermeiden
+//         li.querySelector("img").src = obj.src;
+//         li.querySelector("title_name").textContent = obj.title;
+//
+//         // Möglichkeit 4: hier ergänzt um die das kurze ein und ausblenden zu vermeiden
+//         // var li = document.importNode(litemplate.content, true);
+//         // li.querySelector("img").src = obj.src;
+//         // li.querySelector("title_name").textContent = obj.title;
+//
+//         ul.appendChild(li);
+//
+//     }
+    // Call-Back Funktion - alternativ dazu Promisses
+    // xhr("GET","data/listitems.json", null, function (xhrobj) {
+    //    alert("got data from server: " + xhrobj.responseText);
+    //    var items = JSON.parse(xhrobj.responseText);
+    //    console.log("got items: ", items);
+    //    items.forEach(item => addLiElementToList(item));
+    //     });
 
-        // Möglichkeit 4: hier ergänzt um die das kurze ein und ausblenden zu vermeiden
-        // var li = document.importNode(litemplate.content, true);
-        // li.querySelector("img").src = obj.src;
-        // li.querySelector("title_name").textContent = obj.title;
+    // XHR Funktion, die ein Promise zurückliefert - lange Version
+    //     var promise = xhr("GET","data/listitems.json", null);
+    //     promise.then(function (xhrobj) {
+    //         alert("got data from server: " + xhrobj.responseText);
+    //         var items = JSON.parse(xhrobj.responseText);
+    //         console.log("got items: ", items);
+    //         items.forEach(item => addLiElementToList(item));
+    // });
 
-        ul.appendChild(li);
+    // XHR Funktion, die ein Promise zurückliefert - kurze Version des Promise aufrufs
+    //     xhr("GET","data/listitems.json", null).then(function (xhrobj) {
+    //     alert("got data from server: " + xhrobj.responseText);  // dieser Zugriff ist nicht asynchron
+    //     var items = JSON.parse(xhrobj.responseText);
+    //     console.log("got items: ", items);
+    //     items.forEach(item => addLiElementToList(item));
+    // });
 
-    }
-    xhr("GET","data/listitems.json", null, function (xhrobj) {
-       alert("got data from server: " + xhrobj.responseText);
-       var items = JSON.parse(xhrobj.responseText);
-       console.log("got items: ", items);
-       items.forEach(item => addLiElementToList(item));
-    });
+   // // lange Schreibweise promise2
+   //  var promise1 = fetch("data/listitems.json");
+   //  var promise2 = promise1.then(function (response) {
+   //      response.text(); // auslesen von Inhalten funktioniert asynchron
+   //  });
+   //  promise2.then(function (txt) {
+   //      alert("got data from server: " + txt);  // dieser Zugriff ist nicht asynchron
+   //      var items = JSON.parse(txt);
+   //      console.log("got items: ", items);
+   //      items.forEach(item => addLiElementToList(item));
+   //  });
+
+    // kurze Schreibweise promise2, die übersichtlicher ist,
+    //  um auf serverseitige Inhalte mittels HttpRequest zuzugreifen
+    // fetch("data/listitems.json")
+    //     .then(function (response) {
+    //     response.text(); // auslesen von Inhalten funktioniert asynchron
+    // })
+    //     .then(function (txt) {
+    //         alert("got data from server: " + txt);  // dieser Zugriff ist nicht asynchron
+    //         var items = JSON.parse(txt);
+    //         console.log("got items: ", items);
+    //         items.forEach(item => addLiElementToList(item));
+    // });
+
 }
 
 window.onload = initialiseView;

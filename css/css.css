@@ -1,6 +1,6 @@
 /* variable declarations */
 :root {
-    --myapp-color-background: 255,255,255;
+    --myapp-color-background: gainsboro;
     --myapp-color-header: rgb(255,255,255);
     --myapp-color-header-border: rgb(195,195,195);
     --myapp-color-main: rgb(255,255,255);
@@ -44,7 +44,6 @@ html, body {
 header {
     background-color: var(--myapp-color-header);
     height: var(--myapp-color-header);
-    display: flex;
     border-bottom: solid 5px;
     border-bottom-color: var(--myapp-color-header-border);
 }
@@ -55,18 +54,19 @@ main {
      /*overflow: scroll;*/
     overflow-y: auto;
 }
-dialog {
-   /* visibility: hidden;*/
-}
+/*dialog {*/
+/*   !* visibility: hidden;*!*/
+/*}*/
 
 footer {
     background-color: var(--myapp-color-footer);
     height: var(--myapp-height-footer);
     color: azure;
     border-top: solid 5px var(--myapp-color-footer-border);
+}
+header, footer, li {
     display: flex;
 }
-
 h1 {
     display: inline-block;
     font-weight: normal;
@@ -86,6 +86,8 @@ li {
     /*line-height: var(--myapp-height-listitem);*/
     padding: 0 10px;
 }
+
+/* list items */
 .first_listitem{
     border-top: solid var(--myapp-color-lines) 15px;
 }
@@ -94,25 +96,17 @@ li img {
     width: var(--myapp-size-image);
     object-fit: cover;
     margin-top: calc((var(--myapp-height-listitem) - var(--myapp-size-image))/2);
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 li img, .title_name, .count, .play{
-    display: inline-block;
+    display: flex;
 }
- /*für die Umsetzung mit Tabelle*/
-
-/*.td2{*/
-/*    width: 100%;*/
-/*}*/
-/*.td3 {*/
-/*    font-size: 11pt;*/
-/*    color: grey;*/
-/*}*/
-/*.td1, .td3{*/
-/*    width: 100%;*/
-/*    !*padding: 0 5px 0 0;*!*/
-/*}*/
-
+.title_infos{
+    justify-content: flex-start;
+}
+.add_info{
+    justify-content: flex-end;
+}
 .source-site, .date{
     font-size: 10pt;
     color: var(--myapp-color-url);
@@ -141,13 +135,11 @@ li img, .title_name, .count, .play{
 .fill-left {
     margin-left: fill;
 }
-
 .fill-right {
     margin-right: auto;
 }
 
 /* imgbutton */
-
 .imgbutton {
     border: none;
     padding: 0;
@@ -160,23 +152,15 @@ li img, .title_name, .count, .play{
     height: 40px;
     width: 40px;
     filter: invert(70%);
-
 }
-
-header .imgbutton {
-    margin-top: 10px;
-}
-
 header .imgbutton {
     margin-top: 5px;
 }
-
 .add{
     background-image: url("img/glyphicons/png/glyphicons-433-plus.png");
     background-size: 50% auto;
     margin-top: 10px;
 }
-
 .view {
     background-image: url("img/glyphicons/png/glyphicons-157-show-thumbnails.png");
     background-size: 50% auto;
@@ -187,30 +171,26 @@ header .imgbutton {
     background-size: 60% auto;
     margin-top: 10px;
 }
-
 .logout{
     background-image: url("img/glyphicons/png/glyphicons-388-log-out.png");
     background-size: 65% auto;
     margin-top: 5px;
 }
-
 .refresh {
     background-image: url("img/glyphicons/png/glyphicons-82-refresh.png");
     background-size: 60% auto;
     margin-top: 5px;
 }
-
-.dots, .play{
-    display: inline-block;
-}
-
+/*.dots, .play{*/
+/*    display: inline-block;*/
+/*}*/
 .dots {
     background-image: url("img/glyphicons/png/glyphicons-518-option-vertical.png");
     height: 20px;
     width: 20px;
     background-size: 5px auto;
     filter: invert(55%);
-    margin-top: 10px;
+    margin-top: 50px;
 }
 .play {
     background-image: url("img/glyphicons/png/glyphicons-174-play.png");
@@ -220,18 +200,22 @@ header .imgbutton {
     filter: invert(55%);
     margin-left: 10px;
 }
+
 /* tiles */
-.tiles li {
-    display: inline-block;
-    border-bottom: none;
-    padding-left: 0;
-    padding-right: 0;
-    height: calc(var(--myapp-size-img-tiles) + 10px);
-}
 .tiles li * {
     display: none;
 }
-.tiles li img{
+.tiles li{
+    border-bottom: none;
+    display: inline-block;
+    padding: 0;
+    height: calc(var(--myapp-size-img-tiles) + 10px);
+}
+.tiles li div{
+    display: inline-block;
+    padding: 0;
+}
+.tiles li div img{
     display: block;
     height: var(--myapp-size-img-tiles);
     width: var(--myapp-size-img-tiles);
@@ -244,11 +228,12 @@ header .imgbutton {
 }
 
 /* fade in - fade out */
+
 main.faded {
     opacity: 0;
-    transition: opacitiy 2s;
+    transition: opacity 1s;
 }
 main {
     opacity: 1.0;
-    transition: opacitiy 1s;
+    transition: opacity 1s;
 }
