@@ -4,6 +4,7 @@ function initialiseView() {
     const header = document.getElementsByTagName("header")[0];
     const main = document.querySelector("main");
     const view = header.querySelector("header .view"); //query selector reagiert auf css elemente
+    const list_view = header.querySelector("header .list_view"); //query selector reagiert auf css elemente
     const refresh = document.querySelector("footer .refresh"); //query selector reagiert auf css elemente
     const ul = main.getElementsByTagName("ul")[0];
     const add = header.querySelector("button.add");
@@ -21,9 +22,12 @@ function initialiseView() {
 
     view.onclick = () => {
         main.classList.toggle("faded");
+        view.classList.toggle("faded");
         setTimeout(() => {
             document.body.classList.toggle("tiles");
-            main.classList.toggle("faded")
+            main.classList.toggle("faded");
+            view.classList.toggle("faded");
+            view.classList.toggle("list_view")
             },1000);
         // main.addEventListener("transitionend", ontransitionend);
     }
@@ -41,7 +45,7 @@ function initialiseView() {
         // *** dritte Möglichkeit ***
         // setTimeout(() => {
         //     main.classList.toggle("faded")},5000);
-        // main.addEventListener("transitionend", ontransitionend);
+        //
 
         // reload statt refresh durch löschen der Liste und Neuaufruf
         // entweder durch - Soll nicht verwendet werden

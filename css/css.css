@@ -1,6 +1,6 @@
 /* variable declarations */
 :root {
-    --myapp-color-background: gainsboro;
+    --myapp-color-background: transparent;
     --myapp-color-header: rgb(255,255,255);
     --myapp-color-header-border: rgb(195,195,195);
     --myapp-color-main: rgb(255,255,255);
@@ -166,9 +166,9 @@ header .imgbutton {
     background-size: 50% auto;
     margin-top: 10px;
 }
-.tilesview {
+.list_view {
     background-image: url("img/glyphicons/png/glyphicons-115-list.png");
-    background-size: 60% auto;
+    background-size: 55% auto;
     margin-top: 10px;
 }
 .logout{
@@ -229,11 +229,23 @@ header .imgbutton {
 
 /* fade in - fade out */
 
-main.faded {
+main.faded, .view.faded {
     opacity: 0;
     transition: opacity 1s;
 }
 main {
     opacity: 1.0;
     transition: opacity 1s;
+}
+
+/* hiding & unhiding elements */
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s linear;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
 }
