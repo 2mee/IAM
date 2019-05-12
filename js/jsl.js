@@ -28,7 +28,7 @@ function initialiseView() {
             main.classList.toggle("faded");
             view.classList.toggle("faded");
             view.classList.toggle("list_view")
-            },1000);
+            },2000);
         // main.addEventListener("transitionend", ontransitionend);
     }
 
