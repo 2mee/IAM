@@ -55,7 +55,7 @@ main {
     overflow-y: auto;
 }
 /*dialog {*/
-/*   !* visibility: hidden;*!*/
+/*    visibility: hidden;*/
 /*}*/
 
 footer {
@@ -87,7 +87,6 @@ li {
     padding: 0 10px;
 }
 
-
 /* list items */
 .first_listitem{
     border-top: solid var(--myapp-color-lines) 15px;
@@ -97,15 +96,11 @@ li img {
     width: var(--myapp-size-image);
     object-fit: cover;
     margin-top: calc((var(--myapp-height-listitem) - var(--myapp-size-image))/2);
-    /*margin-right: 10px;*/
 }
 li img, .title_name{
     display: flex;
 }
-/*.play, .count{*/
-/*    display: inline-block;*/
-
-/*}*/
+/* list elements */
 .title_infos{
     justify-content: flex-start;
 }
@@ -127,7 +122,7 @@ li img, .title_name{
     padding: 5px 10px 0 10px;
     margin-bottom: 0;
 }
- .count{
+.count{
     padding: 5px 0 0 5px;
     font-size: 10pt;
     color: var(--myapp-color-url);
@@ -182,7 +177,7 @@ header .imgbutton {
 }
 .list_view {
     background-image: url("img/glyphicons/png/glyphicons-115-list.png");
-    background-size: 55% auto;
+    background-size: 57% auto;
     margin-top: 10px;
 }
 .logout{
@@ -195,9 +190,6 @@ header .imgbutton {
     background-size: 60% auto;
     margin-top: 5px;
 }
-/*.dots, .play{*/
-/*    display: inline-block;*/
-/*}*/
 .dots {
     background-image: url("img/glyphicons/png/glyphicons-518-option-vertical.png");
     height: 20px;
@@ -244,7 +236,6 @@ header .imgbutton {
 }
 
 /* fade in - fade out */
-
 main.faded, .view.faded {
     opacity: 0;
     transition: opacity 1s;

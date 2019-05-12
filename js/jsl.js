@@ -8,6 +8,7 @@ function initialiseView() {
     const refresh = document.querySelector("footer .refresh"); //query selector reagiert auf css elemente
     const ul = main.getElementsByTagName("ul")[0];
     const add = header.querySelector("button.add");
+    const dialog = document.querySelector("dialog");
     const litemplate = document.querySelector("main ul li");
     // litemplate.parentNode.removeChild(litemplate); // ist die Entfernen Lösung für JSR Aufgabe2
 
@@ -61,7 +62,8 @@ function initialiseView() {
         setTimeout(() => {
             main.classList.toggle("faded")
         },500);
-        ul.innerHTML = "LI";
+    // hier kommt der Listenaufruf
+
     }
 
     function ontransitionend() {
@@ -70,14 +72,19 @@ function initialiseView() {
     }
 
     // list items selection
-    // var litems = main.getElementsByTagName("li");
-    // for (var i = 0; i < litems.length; i++) {
-    //     let currentli = litems[i];
-    //     // currentli.onclick = (evt) => {
-    //         // alert("Select:" + getLiTitle(currentli) + "click on: " + evt.target);
-    //         // Event target evt.target gibt an auf welchem Element das Event (z.B. der click) tatsächlich stattgefunden hat
-    //     // }
-    // }
+    var litems = main.getElementsByTagName("li");
+    for (var i = 0; i < litems.length; i++) {
+        let currentli = litems[i];
+        currentli.onclick = (evt) => {
+            if (evt.target !== getLiOption(currentli)) {
+            alert("Click on: " + evt.target + " with title: '" + getLiTitle(currentli));
+            // Event target evt.target gibt an auf welchem Element das Event (z.B. der click) tatsächlich stattgefunden hat
+            }
+            else {
+                alert("Click on: " + evt.target + " with title: '" + getLiTitle(currentli) + "' and URL: '" + getLiSource(currentli) + "'");
+            }
+        }
+    }
 
     // var litems = main.querySelectorAll("li");
     // litems.forEach(currentli => {
@@ -107,38 +114,45 @@ function initialiseView() {
         }
     }
 
-    // function getLiTitle(li) {
-    //     return li.getElementsByClassName("title_name")[0].textContent;
-    // }
+    function getLiTitle(li) {
+        return li.getElementsByClassName("title_name")[0].textContent;
+    }
+    function getLiSource(li) {
+        return li.getElementsByClassName("source-site")[0].textContent;
+    }
+    function getLiOption(li) {
+        return li.getElementsByClassName("dots")[0];
+    }
+
 
     // add new elements
-    // add.onclick = (evt) => {
-    //     evt.stopPropagation(); // unterbindet das Wandern durch den Baum
-    //     addLiElementToList({title: "New Element:" + Date.now(),src:"http:///placeimg.com/150/200/any" })
-    //    // alert("add new element");
-    // }
+    add.onclick = (evt) => {
+        evt.stopPropagation(); // unterbindet das Wandern durch den Baum
+        addLiElementToList({title: "New Element:" + Date.now(),src:"http:///placeimg.com/150/200/any" })
+       // alert("add new element");
+    }
 
-//     function addLiElementToList(obj){
-//         // alert("add new element for: " + JSON.stringify(obj));
-//         console.log("add new element for: " + JSON.stringify(obj)); // z.B. für Troubleshooting
+    function addLiElementToList(obj){
+        // alert("add new element for: " + JSON.stringify(obj));
+        console.log("add new element for: " + JSON.stringify(obj)); // z.B. für Troubleshooting
 //
 //         // Möglichkeit 1:
 //         // ul.innerHTML = ul.innerHTML + "<li><img alt class=\"align-left\" src=\"" + obj.src + "\"/><span class='title_name'>" + obj.title + "</span> </li>";
 //
 //         // Möglichkeit 2:
-// //         var li = document.createElement("li");
-// //         var img = document.createElement("img");
-// //         img.classList.add("align-left");
-// //         img.src = obj.src;
-// //         li.appendChild(img);
+        var li = document.createElement("li");
+        var img = document.createElement("img");
+        img.classList.add("align-left");
+        img.src = obj.src;
+        li.appendChild(img);
 // //
 // // // *********   Frage statt <h2> habe ich <span class="titel_name"> ist das so umsetzbar? *************
-// //         var title_name = document.createElement("span class");
-// //         title_name.classList.add("align-left");
-// //         title_name.textContent = obj.title;
-// //         li.appendChild(title_name);
-// //         var button = document.createElement("button");
-// //         button.setAttribute("class", "imgbutton align-right edit-item");
+//         var title_name = document.createElement("span class");
+//         title_name.classList.add("align-left");
+//         title_name.textContent = obj.title;
+//         li.appendChild(title_name);
+//         var button = document.createElement("button");
+//         button.setAttribute("class", "imgbutton align-right edit-item");
 //
 //         // Möglichkeit 3:
 //         var li = litemplate.cloneNode(true);
@@ -151,9 +165,9 @@ function initialiseView() {
 //         // li.querySelector("img").src = obj.src;
 //         // li.querySelector("title_name").textContent = obj.title;
 //
-//         ul.appendChild(li);
+        ul.appendChild(li);
 //
-//     }
+    }
     // Call-Back Funktion - alternativ dazu Promisses
     // xhr("GET","data/listitems.json", null, function (xhrobj) {
     //    alert("got data from server: " + xhrobj.responseText);
